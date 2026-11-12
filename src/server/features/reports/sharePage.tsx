@@ -1,4 +1,5 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { BRAND_NAME, BRAND_SITE_URL } from "@/client/brand";
 import { formatRelativeTime } from "@/client/lib/relative-time";
 import { ReportRepository } from "@/server/features/reports/repositories/ReportRepository";
 import {
@@ -19,7 +20,7 @@ import { domainField } from "@/types/schemas/domain";
 // JavaScript beyond the Share button's clipboard handler. JSX so every value
 // from the row is escaped by React, not by hand.
 
-const MARKETING_URL = "https://openseo.so/?utm_source=shared_report";
+const MARKETING_URL = `${BRAND_SITE_URL}/?utm_source=shared_report`;
 
 const MAX_DESCRIPTION_CHARS = 200;
 
@@ -88,7 +89,7 @@ function TryButton() {
       target="_blank"
       rel="noreferrer"
     >
-      Try OpenSEO
+      ChemiArtClick
     </a>
   );
 }
@@ -111,7 +112,7 @@ function Document({
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
         <meta name="robots" content="noindex, nofollow" />
-        <title>{`${title} - OpenSEO`}</title>
+        <title>{`${title} - ${BRAND_NAME}`}</title>
         {head}
         <link rel="icon" href="/favicon.ico" />
         <style dangerouslySetInnerHTML={{ __html: STYLES }} />
@@ -195,7 +196,7 @@ export async function renderSharePage(
       head={
         <>
           <meta property="og:type" content="article" />
-          <meta property="og:site_name" content="OpenSEO" />
+          <meta property="og:site_name" content={BRAND_NAME} />
           <meta property="og:title" content={report.title} />
           <meta name="twitter:title" content={report.title} />
           {description ? (
@@ -208,11 +209,14 @@ export async function renderSharePage(
           <meta property="og:image" content={imageUrl} />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
-          <meta property="og:image:alt" content={`${report.title} - OpenSEO`} />
+          <meta
+            property="og:image:alt"
+            content={`${report.title} - ${BRAND_NAME}`}
+          />
           <meta name="twitter:image" content={imageUrl} />
           <meta
             name="twitter:image:alt"
-            content={`${report.title} - OpenSEO`}
+            content={`${report.title} - ${BRAND_NAME}`}
           />
           <meta name="twitter:card" content="summary_large_image" />
         </>
@@ -222,7 +226,8 @@ export async function renderSharePage(
         <div className="title">
           <h1>{report.title}</h1>
           <p className="meta">
-            Made with OpenSEO · Updated {formatRelativeTime(report.updatedAt)}
+            Made with {BRAND_NAME} · Updated{" "}
+            {formatRelativeTime(report.updatedAt)}
           </p>
         </div>
         <div className="actions">

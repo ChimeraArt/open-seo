@@ -349,3 +349,43 @@ html[data-theme="openseo-dark"] {
   --trend-tooltip-border: oklch(40% 0.01 255 / 0.65);
   --trend-tooltip-shadow: oklch(0% 0 0 / 0.35);
 }
+
+/* ChemiArtClick brand. Kept in one block at the end so upstream theme changes
+   merge cleanly; these values win over the defaults above. */
+:where(:root),
+[data-theme="openseo"] {
+  --radius: 0.75rem;
+  --background: oklch(97% 0.002 286);
+  --foreground: oklch(22% 0.003 286);
+  --card-foreground: oklch(22% 0.003 286);
+  --popover-foreground: oklch(22% 0.003 286);
+  --primary: oklch(57% 0.11 70);
+  --ring: oklch(57% 0.11 70);
+  --muted-foreground: oklch(50% 0.004 286);
+  --border: oklch(91% 0.004 286);
+  --chart-1: oklch(57% 0.11 70);
+  --chart-2: oklch(35% 0.01 286);
+  --sidebar: oklch(100% 0 0);
+  --sidebar-foreground: oklch(22% 0.003 286);
+  --sidebar-primary: oklch(57% 0.11 70);
+  --sidebar-ring: oklch(57% 0.11 70);
+  --sidebar-border: oklch(91% 0.004 286);
+}
+
+[data-theme="openseo-dark"] {
+  --background: oklch(17% 0.003 286);
+  --card: oklch(22% 0.003 286);
+  --primary: oklch(69% 0.12 72);
+  --primary-foreground: oklch(17% 0.003 286);
+  --ring: oklch(69% 0.12 72);
+  --chart-1: oklch(69% 0.12 72);
+  --sidebar-primary: oklch(69% 0.12 72);
+  --sidebar-primary-foreground: oklch(17% 0.003 286);
+  --sidebar-ring: oklch(69% 0.12 72);
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}

@@ -6,6 +6,7 @@ import {
   getOAuthSignedQuery,
 } from "@/lib/auth-redirect";
 import { isHostedClientAuthMode, usesBetterAuthClient } from "@/lib/auth-mode";
+import { BRAND_NAME, BRAND_SITE_URL } from "@/client/brand";
 import { PRIVACY_URL, TERMS_URL } from "@/shared/terms";
 
 export const authRedirectSearchSchema = z.object({
@@ -151,7 +152,7 @@ export function AuthPageCard({
       <div className="space-y-3 text-center">
         <img
           src="/transparent-logo.png"
-          alt="OpenSEO"
+          alt={BRAND_NAME}
           className="mx-auto size-10 rounded-lg"
         />
         <div>
@@ -175,8 +176,46 @@ export function AuthPageShell({ children }: { children: React.ReactNode }) {
     // auto-margin child centers when it fits but stays fully reachable (top and
     // bottom) when it's taller than the viewport. Plain `justify-center` clips
     // the overflow with no way to scroll to it.
-    <div className="flex h-[100dvh] flex-col items-center overflow-y-auto bg-background p-4">
-      <div className="m-auto flex w-full flex-col items-center">{children}</div>
+    <div className="flex h-[100dvh] overflow-y-auto bg-background">
+      <BrandPanel />
+      <div className="flex min-h-full flex-1 flex-col items-center p-4">
+        <div className="m-auto flex w-full flex-col items-center">
+          {children}
+        </div>
+      </div>
     </div>
+  );
+}
+
+const BRAND_POINTS = [
+  "Anahtar kelime ve sıralama takibi",
+  "Teknik site denetimi",
+  "Backlink ve rakip analizi",
+  "Search Console verileri ve paylaşılabilir raporlar",
+];
+
+function BrandPanel() {
+  return (
+    <aside className="sticky top-0 hidden h-full w-[44%] max-w-xl shrink-0 flex-col justify-between bg-[#1d1d1f] p-12 text-white lg:flex">
+      <a href={BRAND_SITE_URL} className="flex items-center gap-3">
+        <img src="/transparent-logo.png" alt="" className="size-9 rounded-xl" />
+        <span className="text-lg font-semibold">{BRAND_NAME}</span>
+      </a>
+      <div className="space-y-6">
+        <h2 className="text-4xl font-semibold leading-tight tracking-tight text-balance">
+          Sitenizin SEO'sunu tek panelden{" "}
+          <span className="text-[#c68f37]">izleyin ve büyütün.</span>
+        </h2>
+        <ul className="space-y-3 text-white/75">
+          {BRAND_POINTS.map((point) => (
+            <li key={point} className="flex items-center gap-3">
+              <span className="size-2 shrink-0 rounded-full bg-[#c68f37]" />
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <p className="text-sm text-white/50">ChemiArtClick Digital Agency</p>
+    </aside>
   );
 }
