@@ -1,4 +1,5 @@
 import { ImageResponse } from "takumi-js/response";
+import { BRAND_NAME } from "@/client/brand";
 import { domainField } from "@/types/schemas/domain";
 import logo from "../../../public/android-chrome-192x192.png?inline";
 
@@ -19,14 +20,14 @@ export async function renderReportSocialImage(
         display: "flex",
         flexDirection: "column",
         padding: 64,
-        backgroundColor: "#f5f4ef",
-        color: "#1d2925",
+        backgroundColor: "#f5f5f7",
+        color: "#1d1d1f",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
         <img src={logo} width={64} height={64} style={{ borderRadius: 14 }} />
         <div style={{ fontSize: 34, fontWeight: 600, letterSpacing: -1 }}>
-          OpenSEO
+          {BRAND_NAME}
         </div>
       </div>
       <div
